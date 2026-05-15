@@ -1,0 +1,32 @@
+@model VendorTrack.Web.ViewModels.Requirements.RequirementCreateViewModel
+@{
+    ViewData["Title"] = "Create Requirement";
+}
+
+<h1 class="h3 mb-3">Create Requirement</h1>
+
+<form method="post" class="card border-0 shadow-sm">
+    <div class="card-body">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="form-check mb-3">
+            <input asp-for="RequiresExpiry" class="form-check-input" />
+            <label asp-for="RequiresExpiry" class="form-check-label"></label>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ExpiryReminderDays" class="form-label"></label>
+            <input asp-for="ExpiryReminderDays" class="form-control" />
+            <span asp-validation-for="ExpiryReminderDays" class="text-danger"></span>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+    </div>
+</form>

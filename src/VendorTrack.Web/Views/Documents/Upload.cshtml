@@ -1,0 +1,29 @@
+@model VendorTrack.Web.ViewModels.Documents.DocumentUploadViewModel
+@{
+    ViewData["Title"] = "Upload Document";
+}
+
+<h1 class="h3 mb-3">Upload Document</h1>
+
+<form method="post" enctype="multipart/form-data" class="card border-0 shadow-sm">
+    <div class="card-body">
+        <input type="hidden" asp-for="AssignmentId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="IssueDate" class="form-label"></label>
+                <input asp-for="IssueDate" type="date" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="ExpiryDate" class="form-label"></label>
+                <input asp-for="ExpiryDate" type="date" class="form-control" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="File" class="form-label"></label>
+            <input asp-for="File" type="file" class="form-control" />
+            <span asp-validation-for="File" class="text-danger"></span>
+        </div>
+        <button class="btn btn-primary" type="submit">Upload</button>
+    </div>
+</form>

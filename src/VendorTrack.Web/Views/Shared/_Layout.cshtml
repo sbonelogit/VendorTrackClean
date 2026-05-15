@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VendorTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">VendorTrack</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Vendors" asp-action="Index">Vendors</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Requirements" asp-action="Index">Requirements</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="VendorRequirements" asp-action="Assign">Assignments</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Documents" asp-action="PendingReview">Pending Reviews</a></li>
+                    </ul>
+                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-flex">
+                        <span class="navbar-text text-light me-3">@User.Identity.Name</span>
+                        <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        @if (TempData["Success"] is not null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] is not null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+        @RenderBody()
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

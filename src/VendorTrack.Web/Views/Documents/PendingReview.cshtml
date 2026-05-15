@@ -1,0 +1,38 @@
+@model IReadOnlyList<VendorTrack.Domain.Entities.PendingDocumentReview>
+@{
+    ViewData["Title"] = "Pending Reviews";
+}
+
+<h1 class="h3 mb-3">Pending Document Reviews</h1>
+
+<table class="table table-hover align-middle">
+    <thead>
+        <tr><th>Vendor</th><th>Requirement</th><th>File</th><th>Expiry</th><th>Uploaded By</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in Model)
+        {
+            <tr>
+                <td>@doc.CompanyName</td>
+                <td>@doc.RequirementName</td>
+                <td>@doc.OriginalFileName</td>
+                <td>@doc.ExpiryDate?.ToString("yyyy-MM-dd")</td>
+                <td>@doc.UploadedByName</td>
+                <td>
+                    <form asp-action="Review" method="post" class="d-inline">
+                        <input type="hidden" name="DocumentId" value="@doc.DocumentId" />
+                        <input type="hidden" name="Decision" value="Approved" />
+                        <input type="hidden" name="Comment" value="Approved" />
+                        <button class="btn btn-sm btn-success" type="submit">Approve</button>
+                    </form>
+                    <form asp-action="Review" method="post" class="d-inline ms-1">
+                        <input type="hidden" name="DocumentId" value="@doc.DocumentId" />
+                        <input type="hidden" name="Decision" value="Rejected" />
+                        <input type="text" name="Comment" class="form-control form-control-sm d-inline-block" style="width:180px" placeholder="Reason" />
+                        <button class="btn btn-sm btn-danger" type="submit">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

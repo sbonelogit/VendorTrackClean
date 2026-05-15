@@ -1,0 +1,33 @@
+@model VendorTrack.Web.ViewModels.Assignments.AssignRequirementViewModel
+@{
+    ViewData["Title"] = "Assign Requirement";
+}
+
+<h1 class="h3 mb-3">Assign Requirement to Vendor</h1>
+
+<form method="post" class="card border-0 shadow-sm">
+    <div class="card-body">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="VendorId" class="form-label">Vendor</label>
+            <select asp-for="VendorId" class="form-select">
+                <option value="">-- Select vendor --</option>
+                @foreach (var vendor in Model.Vendors)
+                {
+                    <option value="@vendor.VendorId">@vendor.CompanyName</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="RequirementId" class="form-label">Requirement</label>
+            <select asp-for="RequirementId" class="form-select">
+                <option value="">-- Select requirement --</option>
+                @foreach (var requirement in Model.Requirements)
+                {
+                    <option value="@requirement.RequirementId">@requirement.Name</option>
+                }
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Assign</button>
+    </div>
+</form>

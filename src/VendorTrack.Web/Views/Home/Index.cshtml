@@ -1,0 +1,17 @@
+@model VendorTrack.Web.ViewModels.Dashboard.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1 class="h3 mb-4">Compliance Dashboard</h1>
+
+<div class="row g-3">
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Total Vendors</div><strong>@Model.TotalVendors</strong></div></div></div>
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Active Vendors</div><strong>@Model.ActiveVendors</strong></div></div></div>
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Pending Upload</div><strong>@Model.PendingUpload</strong></div></div></div>
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Pending Review</div><strong>@Model.PendingReview</strong></div></div></div>
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Approved</div><strong>@Model.Approved</strong></div></div></div>
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Rejected</div><strong>@Model.Rejected</strong></div></div></div>
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Expired</div><strong>@Model.Expired</strong></div></div></div>
+    <div class="col-md-3"><div class="card stat-card"><div class="card-body"><div>Expiring Soon</div><strong>@Model.ExpiringSoon</strong></div></div></div>
+</div>
